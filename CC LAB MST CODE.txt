@@ -1,0 +1,50 @@
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* searchRange(int* nums, int numsSize, int target, int* returnSize) {
+    int first=-1;
+    int last=-1;
+    int f=0;
+    int l=numsSize-1;
+    int m=(l-f)/2;
+    // printf("%d", m);
+    
+    for(;f<m;)
+    {
+        if(nums[m]<target)
+        {
+            f=m+1;
+            m=(l-f)/2;
+        }
+        if(nums[m]>target)
+        {
+            l=m-1;
+            m=(l-f)/2;
+        }
+        if(nums[m]==target)
+        {
+            first=m;
+            last=m;
+            for(int i=m;i<l;i++)
+            {
+                if(nums[i]==target)
+                {
+                    last=i;
+                }
+            }
+            for(int j=m;j<f;j--)
+            {
+                if(nums[j]==target)
+                {
+                    first=j;
+                }
+            }
+        }
+    printf("%d", first);
+    printf("%d", last);
+
+    }
+        
+    int answer[]={first,last};
+    return(answer);
+}
